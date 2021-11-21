@@ -1,3 +1,5 @@
+import requests
+
 class Player:
     def __init__(self, player_dict):
         self.name = player_dict['name']
