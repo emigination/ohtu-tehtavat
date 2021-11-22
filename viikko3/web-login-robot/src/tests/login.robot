@@ -17,6 +17,14 @@ Login With Incorrect Password
     Submit Credentials
     Login Should Fail With Message  Invalid username or password
 
+Login With Nonexistent Username
+    Go To Login Page
+    Set Username  kissa
+    Set Password  salasana
+    Submit Credentials
+    Login Should Fail With Message  Invalid username or password
+
+
 *** Keywords ***
 Login Should Succeed
     Main Page Should Be Open
