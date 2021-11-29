@@ -83,3 +83,11 @@ class TestOstoskori(unittest.TestCase):
         self.kori.lisaa_tuote(omena)
         ostos = self.kori.ostokset()[0]
         self.assertEqual((ostos.tuotteen_nimi(), ostos.lukumaara()), ('omena', 2))
+
+    def test_kahden_saman_tuotteen_lisaamisen_ja_yhden_poston_jalkeen_ostosolion_maara_oikein(self):
+        omena = Tuote("omena", 3)
+        self.kori.lisaa_tuote(omena)
+        self.kori.lisaa_tuote(omena)
+        self.kori.poista_tuote(omena)
+        ostos = self.kori.ostokset()[0]
+        self.assertEqual((ostos.tuotteen_nimi(), ostos.lukumaara()), ('omena', 1))
