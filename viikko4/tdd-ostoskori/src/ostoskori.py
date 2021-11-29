@@ -19,7 +19,7 @@ class Ostoskori:
 
     def lisaa_tuote(self, lisattava: Tuote):
         for ostos in self._ostokset:
-            if ostos.tuotteen_nimi()==lisattava.nimi():
+            if ostos.tuote==lisattava:
                 ostos.muuta_lukumaaraa(1)
                 return
         self._ostokset.append(Ostos(lisattava))
@@ -27,10 +27,11 @@ class Ostoskori:
     def poista_tuote(self, poistettava: Tuote):
         poistettava_ostos = None
         for ostos in self._ostokset:
-            if ostos.tuotteen_nimi()==poistettava.nimi():
+            if ostos.tuote==poistettava:
                 ostos.muuta_lukumaaraa(-1)
                 if ostos.lukumaara()<1:
                     poistettava_ostos = ostos
+                break
         if poistettava_ostos:
             self._ostokset.remove(poistettava_ostos)
 
