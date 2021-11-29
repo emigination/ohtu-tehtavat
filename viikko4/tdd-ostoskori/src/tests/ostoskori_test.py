@@ -28,7 +28,7 @@ class TestOstoskori(unittest.TestCase):
         self.kori.lisaa_tuote(Mock())
         self.assertEqual(self.kori.tavaroita_korissa(), 2)
 
-    def test_kahden_eri_tuotteen_lisayksen_jalkeen_korin_hinta_niiden_summa(self):
+    def test_kahden_saman_tuotteen_lisayksen_jalkeen_korin_hinta_niiden_summa(self):
         mock_tuote1 = Mock()
         mock_tuote1.hinta.return_value = 3
         mock_tuote2 = Mock()
@@ -36,3 +36,9 @@ class TestOstoskori(unittest.TestCase):
         self.kori.lisaa_tuote(mock_tuote1)
         self.kori.lisaa_tuote(mock_tuote2)
         self.assertEqual(self.kori.hinta(), 5)
+
+    def test_kahden_saman_tuotteen_lisayksen_jalkeen_korissa_kaksi_tavaraa(self):
+        mock_tuote = Mock()
+        self.kori.lisaa_tuote(mock_tuote)
+        self.kori.lisaa_tuote(mock_tuote)
+        self.assertEqual(self.kori.tavaroita_korissa(), 2)
