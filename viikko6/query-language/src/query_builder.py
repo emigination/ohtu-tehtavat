@@ -7,7 +7,7 @@ class QueryBuilder:
         elif len(matchers)<2:
             self._matcher = matchers
         else:
-            self._matcher = m.And(matchers[0], matchers[1])
+            self._matcher = m.And(*matchers)
 
     def build(self):
         if not self._matcher:
@@ -22,5 +22,8 @@ class QueryBuilder:
 
     def hasFewerThan(self, value, attr):
         return QueryBuilder(self._matcher, m.HasFewerThan(value, attr))
+
+    def oneOf(self, *queries):
+        return QueryBuilder(self._matcher, m.Or(*queries))
 
 
