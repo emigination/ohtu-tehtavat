@@ -27,7 +27,7 @@ class HasAtLeast:
         return player_value >= self._value
 
 class All:
-    def mathches(self, player):
+    def matches(self, player):
         return True
 
 class Not:
@@ -39,10 +39,12 @@ class Not:
 
 class HasFewerThan:
     def __init__(self, value, attr):
-        self._matcher = Not(HasAtLeast(value, attr))
+        self._value = value
+        self._attr = attr
 
     def matches(self, player):
-        self._matcher.matches(player)
+        player_value = getattr(player, self._attr)
+        return player_value < self._value
 
 class Or:
     def __init__(self, *matchers):
